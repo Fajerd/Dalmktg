@@ -18,19 +18,53 @@ function scrollToContact() {
 // تشغيل الأكواد عند جاهزية الصفحة
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. تحديث السنة تلقائياً بالتأمين
+    // 1. تحديد اللغة والتحكم بها (حفظ الاختيار في المتصفح)
+    let currentLang = localStorage.getItem('selectedLanguage') || document.documentElement.lang || 'en';
+    
+    // دالة لتطبيق اللغة على الصفحة
+    function applyLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('selectedLanguage', lang);
+        document.documentElement.lang = lang;
+        
+        const isAr = lang === 'ar';
+        
+        // تعديل اتجاه الصفحة (RTL للعربي و LTR للإنجليزي)
+        document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+        
+        // تحديث نص زر اللغة (إذا كنا في العربي يظهر زر التحويل للإنجليزي EN والعكس)
+        const langBtn = document.getElementById('lang-toggle');
+        if (langBtn) {
+            langBtn.innerText = isAr ? 'EN' : 'العربية';
+        }
+
+        // إعادة بناء الخدمات والمشاريع باللغة الجديدة
+        renderServices(isAr);
+        renderProjects(isAr);
+        
+        // تحديث نصوص الـ HTML الثابتة (إذا كانت تحتوي على كلاسات اللغة)
+        translateStaticElements(isAr);
+
+        // تحديث مكتبة الأيقونات والأنيميشن بعد تغيير المحتوى
+        try {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+        } catch (e) {}
+    }
+
+    // تفعيل زر تغيير اللغة عند الضغط عليه
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+        langBtn.addEventListener('click', () => {
+            const nextLang = currentLang === 'ar' ? 'en' : 'ar';
+            applyLanguage(nextLang);
+        });
+    }
+
+    // 2. تحديث السنة تلقائياً بالتأمين
     const yearEl = document.getElementById('year');
     if (yearEl) {
         yearEl.innerText = new Date().getFullYear();
-    }
-
-    // 2. تفعيل أيقونات Lucide بالتأمين
-    try {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    } catch (e) {
-        console.warn("Lucide library not loaded yet.");
     }
 
     // 3. حركة الصورة المغناطيسية (MAGNETIC PHOTO EFFECT)
@@ -41,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             const distanceX = e.clientX - centerX;
-            const distanceY = e.clientY - centerY;
+            const distanceY = e.centerY - centerY;
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
             if (distance < 250) {
@@ -125,15 +159,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 5. ظهور نص "ABOUT" حرفاً بحرف (ABOUT TEXT REVEAL)
-    const textContainer = document.getElementById('about-text');
-    if (textContainer && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        const originalText = textContainer.innerText.trim();
-        if (originalText.length > 0) {
+    // لحل مشكلة اللغتين، سنضع النصين هنا ليتحول تلقائياً مع زر اللغة
+    const aboutTexts = {
+        en: "I am a digital creator specializing in video editing, motion graphics, and clean web experiences. Let's build something unique.",
+        ar: "أنا صانع محتوى رقمي متخصص في مونتاج الفيديو، الموشن جرافيك، وتصميم المواقع الحديثة. دعنا نصنع شيئاً فريداً معاً."
+    };
+
+    function triggerAboutAnimation(isAr) {
+        const textContainer = document.getElementById('about-text');
+        if (textContainer && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            const originalText = isAr ? aboutTexts.ar : aboutTexts.en;
+            
+            // تفكيك النص إلى حروف
             textContainer.innerHTML = originalText.split('').map(char => 
                 `<span class="opacity-20 transition-all duration-200 inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
             ).join('');
 
             const chars = textContainer.querySelectorAll('span');
+            
+            // إيقاف أي أنيميشن قديم قبل تشغيل الجديد لمنع التداخل
+            gsap.killTweensOf(chars);
+            
             gsap.to(chars, {
                 opacity: 1,
                 color: "#D7E2EA",
@@ -148,21 +194,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 6. رندرة قسم الخدمات ديناميكياً (SERVICES RENDER)
-    const services = [
-        { id: "01", name: "Videography", desc: "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for shops, products, and visualizations." },
-        { id: "02", name: "editing", desc: "High-quality, editing that showcase designs with custom lighting, textures, and materials to bring concepts to life." },
-        { id: "03", name: "Motion Design", desc: "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences." },
-        { id: "04", name: "Branding", desc: "Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence." },
-        { id: "05", name: "Web Design", desc: "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience." }
-    ];
+    // 6. رندرة قسم الخدمات
+    const servicesData = {
+        en: [
+            { id: "01", name: "Videography", desc: "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for shops, products, and visualizations." },
+            { id: "02", name: "Editing", desc: "High-quality editing that showcases designs with custom lighting, textures, and materials to bring concepts to life." },
+            { id: "03", name: "Motion Design", desc: "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences." },
+            { id: "04", name: "Branding", desc: "Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence." },
+            { id: "05", name: "Web Design", desc: "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience." }
+        ],
+        ar: [
+            { id: "01", name: "تصوير الفيديو", desc: "إنشاء عناصر وتفاصيل مرئية مخصصة تناسب احتياجات مشروعك، مثالية للمتاجر، المنتجات، والعروض البصرية." },
+            { id: "02", name: "المونتاج وتحرير الفيديو", desc: "تحرير ومونتاج عالي الجودة يبرز تصاميمك بإضاءة، ملمس، ومؤثرات بصرية تنبض بالحياة." },
+            { id: "03", name: "تصميم الموشن جرافيك", desc: "تحريك تفاعلي ورسوم متحركة تضيف الحيوية لعلامتك التجارية ومنتجاتك وتجاربك الرقمية." },
+            { id: "04", name: "الهوية البصرية والبراندنج", desc: "بناء هويات بصرية متكاملة وشعارات فريدة تعبر عن حضور مميز ولا يُنسى لعلامتك التجارية." },
+            { id: "05", name: "تصميم المواقع", desc: "تصميم مواقع إنترنت حديثة وجذابة تركز على تجربة المستخدم، الخطوط، وتناسق الألوان لتحقيق أعلى تفاعل." }
+        ]
+    };
 
-    const servicesList = document.getElementById('services-list');
-    if (servicesList) {
+    function renderServices(isAr) {
+        const servicesList = document.getElementById('services-list');
+        if (!servicesList) return;
+        
         servicesList.innerHTML = "";
-        services.forEach(svc => {
+        const selectedServices = isAr ? servicesData.ar : servicesData.en;
+        const textAlignment = isAr ? 'text-right' : 'text-left';
+        const flexDir = isAr ? 'md:flex-row-reverse' : 'md:flex-row';
+
+        selectedServices.forEach(svc => {
             servicesList.innerHTML += `
-            <div class="flex flex-col md:flex-row items-start md:items-center py-8 sm:py-12 border-b border-[#0C0C0C]/15 group transition-colors duration-300 hover:bg-[#0C0C0C]/5 px-2">
+            <div class="flex flex-col ${flexDir} items-start md:items-center py-8 sm:py-12 border-b border-[#0C0C0C]/15 group transition-colors duration-300 hover:bg-[#0C0C0C]/5 px-2 ${textAlignment}">
                 <div class="text-[#0C0C0C] font-black leading-none tracking-tighter w-full md:w-1/3 mb-4 md:mb-0 text-[18vw] sm:text-[14vw] md:text-[10vw]">
                     ${svc.id}
                 </div>
@@ -174,56 +235,97 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 7. بناء وتكديس كروت المشاريع (PROJECTS STACK CARDS)
-    const projects = [
-        {
-            id: "01",
-            name: "Nextlevel Studio",
-            category: "Client",
-            col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-            col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-            col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
-        },
-        {
-            id: "02",
-            name: "Aura Brand Identity",
-            category: "Personal",
-            col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
-            col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
-            col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"
-        },
-        {
-            id: "03",
-            name: "Solaris Digital",
-            category: "Client",
-            col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
-            col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
-            col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85"
-        }
-    ];
+    // 7. رندرة وتكديس كروت المشاريع
+    const projectsData = {
+        en: [
+            {
+                id: "01",
+                name: "Nextlevel Studio",
+                category: "Client Project",
+                buttonText: "Live Project",
+                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
+                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
+                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
+            },
+            {
+                id: "02",
+                name: "Aura Brand Identity",
+                category: "Personal Project",
+                buttonText: "Live Project",
+                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
+                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
+                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"
+            },
+            {
+                id: "03",
+                name: "Solaris Digital",
+                category: "Client Project",
+                buttonText: "Live Project",
+                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
+                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
+                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85"
+            }
+        ],
+        ar: [
+            {
+                id: "01",
+                name: "استوديو نيكست ليفيل",
+                category: "مشروع عميل",
+                buttonText: "عرض المشروع",
+                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
+                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
+                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
+            },
+            {
+                id: "02",
+                name: "هوية أورا التجارية",
+                category: "مشروع شخصي",
+                buttonText: "عرض المشروع",
+                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
+                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
+                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"
+            },
+            {
+                id: "03",
+                name: "سولاريس ديجيتال",
+                category: "مشروع عميل",
+                buttonText: "عرض المشروع",
+                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
+                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
+                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85"
+            }
+        ]
+    };
 
-    const projectsContainer = document.getElementById('projects-container');
-    if (projectsContainer) {
+    function renderProjects(isAr) {
+        const projectsContainer = document.getElementById('projects-container');
+        if (!projectsContainer) return;
+        
         projectsContainer.innerHTML = "";
-        projects.forEach((project, idx) => {
+        const selectedProjects = isAr ? projectsData.ar : projectsData.en;
+
+        selectedProjects.forEach((project, idx) => {
             const cardTopOffset = 100 + (idx * 30);
-            const scaleFactor = 1 - ((projects.length - 1 - idx) * 0.03);
+            const scaleFactor = 1 - ((selectedProjects.length - 1 - idx) * 0.03);
+            const textDir = isAr ? 'text-right' : 'text-left';
+            const flexHeaderDir = isAr ? 'flex-row-reverse' : 'flex-row';
+            const iconRotation = isAr ? 'rotate-180' : '';
 
             projectsContainer.innerHTML += `
             <div class="project-card w-full rounded-[30px] md:rounded-[50px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-8 flex flex-col justify-between overflow-hidden shadow-2xl" 
                  style="top: ${cardTopOffset}px; z-index: ${idx + 10}; transform: scale(${scaleFactor})">
                 
                 <!-- Header -->
-                <div class="flex flex-row justify-between items-center w-full border-b border-[#D7E2EA]/20 pb-4">
-                    <div class="flex items-center gap-4">
+                <div class="flex ${flexHeaderDir} justify-between items-center w-full border-b border-[#D7E2EA]/20 pb-4">
+                    <div class="flex ${flexHeaderDir} items-center gap-4 ${textDir}">
                         <span class="text-[#D7E2EA] font-black text-4xl sm:text-6xl">${project.id}</span>
                         <div class="flex flex-col">
                             <span class="text-[#D7E2EA]/60 uppercase tracking-widest text-[10px]">${project.category}</span>
                             <h3 class="text-[#D7E2EA] font-semibold uppercase tracking-wide text-sm sm:text-xl">${project.name}</h3>
                         </div>
                     </div>
-                    <button class="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest px-4 py-2 sm:px-6 sm:py-3 text-xs bg-transparent hover:bg-[#D7E2EA]/10 transition-all flex items-center gap-2">
-                        Live Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    <button class="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest px-4 py-2 sm:px-6 sm:py-3 text-xs bg-transparent hover:bg-[#D7E2EA]/10 transition-all flex items-center gap-2 ${flexHeaderDir}">
+                        ${project.buttonText} <i data-lucide="arrow-up-right" class="w-4 h-4 ${iconRotation}"></i>
                     </button>
                 </div>
 
@@ -245,17 +347,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // تفعيل وتحديث الأيقونات مجدداً للمحتوى الديناميكي
-    try {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
+    // 8. دالة اختيارية لتغيير نصوص الـ HTML الثابتة بالموقع مثل العناوين والأزرار الأخرى
+    // يمكنك إضافة أي نصوص ثابتة تريد ترجمتها هنا
+    function translateStaticElements(isAr) {
+        // تحديث نص الأنيميشن
+        triggerAboutAnimation(isAr);
+        
+        // مثال لترجمة عنوان الخدمات
+        const servicesTitle = document.getElementById('services-title');
+        if (servicesTitle) {
+            servicesTitle.innerText = isAr ? "الخدمات" : "Services";
         }
-    } catch (e) {}
 
-    // تحديث ScrollTrigger لحساب الأبعاد الجديدة بعد بناء العناصر
-    try {
-        if (typeof ScrollTrigger !== 'undefined') {
-            ScrollTrigger.refresh();
+        // مثال لترجمة عنوان المشاريع
+        const projectsTitle = document.getElementById('projects-title');
+        if (projectsTitle) {
+            projectsTitle.innerText = isAr ? "المشاريع المميزة" : "Featured Projects";
         }
-    } catch (e) {}
+    }
+
+    // تشغيل الصفحة باللغة الافتراضية المحددة عند أول تحميل
+    applyLanguage(currentLang);
 });
