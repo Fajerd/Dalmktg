@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-
-    
-    
-    
-    <!-- زر تغيير اللغة -->
-<button id="lang-toggle" class="fixed top-4 left-4 z-50 px-4 py-2 bg-[#0C0C0C] text-[#D7E2EA] border border-[#D7E2EA]/20 rounded-full font-bold text-sm hover:bg-[#D7E2EA] hover:text-[#0C0C0C] transition-all">
-  EN
-</button>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dalmktg -- 3D Creator</title>
-    <!-- Google Fonts (Kanit) -->
+    <title>Dalmktg -- Creator</title>
+    
+    <!-- Google Fonts (Kanit & Cairo for Arabic) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,13 +16,26 @@
     <style>
         html, body {
             background-color: #0C0C0C;
-            font-family: 'Kanit', sans-serif;
+            font-family: 'Kanit', 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
             overflow-x: hidden;
             color: #D7E2EA;
+        }
+
+        /* تبديل اللغات الذكي عبر CSS */
+        html[lang="en"] .lang-ar {
+            display: none !important;
+        }
+        html[lang="ar"] .lang-en {
+            display: none !important;
+        }
+
+        /* تطبيق خط القاهرة عند التحول للغة العربية لشكل أكثر جمالاً */
+        html[lang="ar"] {
+            font-family: 'Cairo', sans-serif;
         }
 
         .hero-heading {
@@ -63,6 +69,32 @@
             top: 100px;
             height: 80vh;
         }
+
+        /* تأثير نبض خفيف لأيقونة الواتساب */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        html[lang="ar"] .whatsapp-float {
+            right: auto;
+            left: 24px; /* تنقل لليسار في الواجهة العربية لعدم مضايقة المستخدمين */
+        }
     </style>
 </head>
 <body class="bg-[#0C0C0C]">
@@ -74,15 +106,34 @@
             <a href="#" class="font-bold tracking-wider text-[#D7E2EA] text-sm md:text-lg lg:text-[1.4rem]">
                 DALMKTG
             </a>
-            <div class="flex gap-4 sm:gap-8 md:gap-10 lg:gap-14">
-                <a href="#about" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">About</a>
-                <a href="#services" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">Services</a>
-                <a href="#projects" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">Projects</a>
-                <a href="#contact" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">Contact</a>
+            
+            <div class="flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                <!-- روابط التصفح مترجمة -->
+                <a href="#about" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
+                    <span class="lang-en">About</span>
+                    <span class="lang-ar">من أنا</span>
+                </a>
+                <a href="#services" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
+                    <span class="lang-en">Services</span>
+                    <span class="lang-ar">الخدمات</span>
+                </a>
+                <a href="#projects" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
+                    <span class="lang-en">Projects</span>
+                    <span class="lang-ar">المشاريع</span>
+                </a>
+                <a href="#contact" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
+                    <span class="lang-en">Contact</span>
+                    <span class="lang-ar">تواصل معي</span>
+                </a>
+
+                <!-- زر تغيير اللغة الأنيق مدمج داخل الهيدر -->
+                <button id="lang-toggle" class="px-3 py-1.5 bg-[#141414] text-[#D7E2EA] border border-[#D7E2EA]/20 rounded-full font-bold text-xs hover:bg-[#D7E2EA] hover:text-[#0C0C0C] transition-all cursor-pointer">
+                    العربية
+                </button>
             </div>
         </nav>
 
-        <!-- Floating Image Container (Magnetic) -->
+        <!-- Floating Portrait Image Container -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <div id="magnetic-photo" class="pointer-events-auto transition-transform duration-300 ease-out">
                 <div class="relative w-[240px] sm:w-[300px] md:w-[380px] lg:w-[440px]">
@@ -98,50 +149,48 @@
         <!-- Big Background Text -->
         <div class="flex-1 flex items-center justify-center overflow-hidden z-20 pointer-events-none mt-6">
             <h1 class="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full select-none text-center text-[13vw] sm:text-[14vw] md:text-[15vw] lg:text-[16.5vw]">
-                Hi, i'm Dalal
+                <span class="lang-en">Hi, i'm Dalal</span>
+                <span class="lang-ar">مرحباً، أنا دلال</span>
             </h1>
         </div>
 
         <!-- Footer Info Inside Hero -->
         <div class="w-full px-6 md:px-10 pb-8 flex justify-between items-end z-20">
             <p class="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px] text-xs sm:text-sm md:text-base">
-                a creator driven by crafting striking and unforgettable projects
+                <span class="lang-en">a creator driven by crafting striking and unforgettable projects</span>
+                <span class="lang-ar">شغوفة بصناعة مشاريع مميزة ومبهرة تترك أثراً لا يُنسى</span>
             </p>
-            <button onclick="scrollToContact()" class="btn-gradient rounded-full uppercase tracking-widest font-medium text-white px-8 py-3 transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm">
-                Contact Me
+            <button onclick="scrollToContact()" class="btn-gradient rounded-full uppercase tracking-widest font-medium text-white px-8 py-3 transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm cursor-pointer">
+                <span class="lang-en">Contact Me</span>
+                <span class="lang-ar">تواصل معي</span>
             </button>
         </div>
     </section>
 
     <!-- MARQUEE SECTION -->
     <section id="marquee" class="bg-[#0C0C0C] pt-20 pb-10 overflow-hidden relative w-full">
-        <!-- Row 1 (Moves Left) -->
-        <div id="marquee-row1" class="flex gap-3 mb-3 w-[200%] select-none pointer-events-none">
-            <!-- Row items will be injected by JavaScript -->
-        </div>
-        <!-- Row 2 (Moves Right) -->
-        <div id="marquee-row2" class="flex gap-3 w-[200%] select-none pointer-events-none">
-            <!-- Row items will be injected by JavaScript -->
-        </div>
+        <div id="marquee-row1" class="flex gap-3 mb-3 w-[200%] select-none pointer-events-none"></div>
+        <div id="marquee-row2" class="flex gap-3 w-[200%] select-none pointer-events-none"></div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about" class="relative min-h-screen w-full bg-[#0C0C0C] flex flex-col justify-center items-center px-5 py-20 overflow-hidden">
-        <!-- 3D Float Elements -->
-        <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png" class="absolute top-[10%] left-[2%] w-[100px] md:w-[180px] h-auto object-contain select-none opacity-80" alt="Moon">
-        <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png" class="absolute bottom-[10%] left-[4%] w-[80px] md:w-[140px] h-auto object-contain select-none opacity-80" alt="Geo">
-        <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png" class="absolute top-[10%] right-[2%] w-[100px] md:w-[180px] h-auto object-contain select-none opacity-80" alt="Lego">
-        <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png" class="absolute bottom-[10%] right-[4%] w-[110px] md:w-[180px] h-auto object-contain select-none opacity-80" alt="Group">
+        <!-- تم تنظيف وإزالة كافة الأشكال الطافية الـ 3D من هنا -->
 
         <div class="flex flex-col items-center justify-center text-center max-w-4xl z-20">
-            <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-[12vw] md:text-[8vw] mb-10">About me</h2>
+            <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-[12vw] md:text-[8vw] mb-10">
+                <span class="lang-en">About me</span>
+                <span class="lang-ar">من أنا</span>
+            </h2>
             
-            <p id="about-text" class="text-[#D7E2EA]/40 font-medium text-center leading-relaxed max-w-[650px] tracking-wide text-lg md:text-2xl mb-12">
-                With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!
+            <p id="about-text" class="text-[#D7E2EA]/70 font-medium text-center leading-relaxed max-w-[700px] tracking-wide text-lg md:text-2xl mb-12">
+                <span class="lang-en">With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!</span>
+                <span class="lang-ar">مع أكثر من خمس سنوات من الخبرة في التصميم، أركز على بناء الهويات التجارية، تصميم مواقع الويب وتجربة المستخدم. أستمتع بالعمل مع الشركات التي تسعى للتميز والظهور بأفضل صورة ممكنة. لنصنع معاً شيئاً مذهلاً!</span>
             </p>
 
-            <button onclick="scrollToContact()" class="btn-gradient rounded-full uppercase tracking-widest font-medium text-white px-8 py-3 transition-all hover:scale-105 active:scale-95 text-sm">
-                Contact Me
+            <button onclick="scrollToContact()" class="btn-gradient rounded-full uppercase tracking-widest font-medium text-white px-8 py-3 transition-all hover:scale-105 active:scale-95 text-sm cursor-pointer">
+                <span class="lang-en">Contact Me</span>
+                <span class="lang-ar">تواصل معي</span>
             </button>
         </div>
     </section>
@@ -149,10 +198,13 @@
     <!-- SERVICES SECTION -->
     <section id="services" class="bg-[#FFFFFF] rounded-t-[40px] md:rounded-t-[60px] px-5 md:px-10 py-20 md:py-32 relative z-20 text-[#0C0C0C]">
         <div class="max-w-5xl mx-auto">
-            <h2 class="font-black uppercase text-center leading-none tracking-tight mb-20 text-[12vw] md:text-[8vw]">Services</h2>
+            <h2 class="font-black uppercase text-center leading-none tracking-tight mb-20 text-[12vw] md:text-[8vw]">
+                <span class="lang-en">Services</span>
+                <span class="lang-ar">خدماتنا</span>
+            </h2>
 
             <div class="flex flex-col border-t border-[#0C0C0C]/15" id="services-list">
-                <!-- Javascript will render dynamic rows here -->
+                <!-- سيتم ملئها بواسطة كود الجافا سكريبت بالترجمة الصحيحة -->
             </div>
         </div>
     </section>
@@ -160,10 +212,13 @@
     <!-- PROJECTS SECTION (STACKED CARDS) -->
     <section id="projects" class="bg-[#0C0C0C] rounded-t-[40px] md:rounded-t-[60px] -mt-10 pt-20 pb-32 relative z-25 px-5 md:px-10">
         <div class="max-w-6xl mx-auto flex flex-col">
-            <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-center mb-24 text-[12vw] md:text-[8vw]">Projects</h2>
+            <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-center mb-24 text-[12vw] md:text-[8vw]">
+                <span class="lang-en">Projects</span>
+                <span class="lang-ar">مشاريعنا</span>
+            </h2>
             
             <div id="projects-container" class="relative flex flex-col items-center w-full gap-20">
-                <!-- Stacked cards will render here dynamically -->
+                <!-- سيتم ملئها بواسطة كود الجافا سكريبت بالترجمة الصحيحة -->
             </div>
         </div>
     </section>
@@ -172,40 +227,49 @@
     <section id="contact" class="bg-[#0C0C0C] pt-24 pb-12 px-6 md:px-10 border-t border-[#D7E2EA]/10 relative z-30">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
             <div class="flex flex-col gap-4">
-                <span class="text-[#D7E2EA]/50 uppercase tracking-widest text-xs sm:text-sm font-medium">Let's Build</span>
+                <span class="text-[#D7E2EA]/50 uppercase tracking-widest text-xs sm:text-sm font-medium">
+                    <span class="lang-en">Let's Build</span>
+                    <span class="lang-ar">لنبدأ البناء</span>
+                </span>
                 <h2 class="text-[#D7E2EA] font-extrabold text-3xl sm:text-5xl uppercase tracking-tighter leading-none">
-                    Have a project <br /> in mind?
+                    <span class="lang-en">Have a project <br /> in mind?</span>
+                    <span class="lang-ar">هل لديك مشروع <br /> في بالك؟</span>
                 </h2>
             </div>
 
             <div class="flex flex-col gap-2 text-[#D7E2EA] font-light text-base sm:text-lg">
                 <a href="mailto:hello@dalmktg.com" class="hover:text-pink-500 transition-colors duration-200">
                     hello@dalmktg.com
-                    
                 </a>
-                <span class="text-white/40">© <span id="year"></span> Dalmktg. All rights reserved.</span>
+                <span class="text-white/40">© <span id="year"></span> Dalmktg. <span class="lang-en">All rights reserved.</span><span class="lang-ar">جميع الحقوق محفوظة.</span></span>
             </div>
         </div>
     </section>
+
+    <!-- أيقونة واتساب العائمة للتراسل الفوري -->
+    <!-- استبدلي الرقم 96512345678 برقم هاتفكِ الفعلي مع رمز الدولة وبدون أصفار أو علامة + -->
+    <a href="https://wa.me/96512345678" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="WhatsApp Chat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+    </a>
 
     <!-- External Animation and Graphic Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Project Script Logic (Loaded last so it can apply logic to above elements) -->
+    <!-- Project Script Logic -->
     <script src="app.js"></script>
-<!-- مكتبات التحريك (يجب أن تكون في الأعلى) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- كود الحركة والتشغيل الخاص بك -->
+    
     <script>
-        // الصق الكود الذي أعطيتك إياه بالكامل هنا...
+        // دالة للتمرير الآمن لقسم الاتصال
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        // تحديث السنة الحالية تلقائياً بالفوتر
+        document.getElementById('year').innerText = new Date().getFullYear();
     </script>
 </body>
-</html></body>
 </html>
-
-}
