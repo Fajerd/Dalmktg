@@ -207,32 +207,5 @@
 </body>
 </html></body>
 </html>
-/* تنسيقات مخصصة للهواتف فقط (عندما يكون عرض الشاشة أقل من 768 بكسل) */
-@media (max-width: 767px) {
-    
-    /* 1. جعل حاوية الشخصية والعنصر تترتب رأسياً (تحت بعض) */
-    .character-container {
-        display: flex;
-        flex-direction: column-reverse; /* تضع العنصر فوق والشخصية تحت */
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
 
-    /* 2. ضبط مكان العنصر (الزر أو النص) ليكون فوق رأس الشخصية مباشرة */
-    #lang-toggle, .translation-bubble {
-        position: relative !important; /* إلغاء التموضع العائم المؤثر على الوجه */
-        transform: none !important;
-        margin-bottom: 15px; /* ترك مسافة أمان صغيرة فوق الرأس */
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 10;
-    }
-
-    /* 3. ضبط حجم الشخصية الكرتونية لضمان عدم تداخلها */
-    .character-image {
-        max-width: 150px; /* تصغير حجم الشخصية قليلاً على التلفون ليصبح متناسقاً */
-        height: auto;
-    }
 }
