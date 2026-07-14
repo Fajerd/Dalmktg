@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // تعديل اتجاه الصفحة (RTL للعربي و LTR للإنجليزي)
         document.documentElement.dir = isAr ? 'rtl' : 'ltr';
         
-        // تحديث نص زر اللغة (إذا كنا في العربي يظهر زر التحويل للإنجليزي EN والعكس)
+        // تحديث نص زر اللغة
         const langBtn = document.getElementById('lang-toggle');
         if (langBtn) {
             langBtn.innerText = isAr ? 'EN' : 'العربية';
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderServices(isAr);
         renderProjects(isAr);
         
-        // تحديث نصوص الـ HTML الثابتة (إذا كانت تحتوي على كلاسات اللغة)
+        // تحديث نصوص الـ HTML الثابتة
         translateStaticElements(isAr);
 
         // تحديث مكتبة الأيقونات والأنيميشن بعد تغيير المحتوى
@@ -159,10 +159,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 5. ظهور نص "ABOUT" حرفاً بحرف (ABOUT TEXT REVEAL)
-    // لحل مشكلة اللغتين، سنضع النصين هنا ليتحول تلقائياً مع زر اللغة
     const aboutTexts = {
-        en: "I am a digital creator specializing in video editing, motion graphics, and clean web experiences. Let's build something unique.",
-        ar: "أنا صانع محتوى رقمي متخصص في مونتاج الفيديو، الموشن جرافيك، وتصميم المواقع الحديثة. دعنا نصنع شيئاً فريداً معاً."
+        en: "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!",
+        ar: "مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!"
     };
 
     function triggerAboutAnimation(isAr) {
@@ -348,21 +347,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 8. دالة اختيارية لتغيير نصوص الـ HTML الثابتة بالموقع مثل العناوين والأزرار الأخرى
-    // يمكنك إضافة أي نصوص ثابتة تريد ترجمتها هنا
     function translateStaticElements(isAr) {
         // تحديث نص الأنيميشن
         triggerAboutAnimation(isAr);
         
-        // مثال لترجمة عنوان الخدمات
+        // ترجمة عنوان الخدمات
         const servicesTitle = document.getElementById('services-title');
         if (servicesTitle) {
             servicesTitle.innerText = isAr ? "الخدمات" : "Services";
         }
 
-        // مثال لترجمة عنوان المشاريع
+        // ترجمة عنوان المشاريع
         const projectsTitle = document.getElementById('projects-title');
         if (projectsTitle) {
-            projectsTitle.innerText = isAr ? "المشاريع المميزة" : "Featured Projects";
+            projectsTitle.innerText = isAr ? "المشاريع" : "Projects";
         }
     }
 
