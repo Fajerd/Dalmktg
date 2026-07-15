@@ -227,18 +227,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. رندرة قسم الخدمات
     const servicesData = {
         en: [
-            { id: "01", name: "Videography", desc: "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for shops, products, and visualizations." },
-            { id: "02", name: "Editing", desc: "High-quality editing that showcases designs with custom lighting, textures, and materials to bring concepts to life." },
-            { id: "03", name: "Motion Design", desc: "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences." },
-            { id: "04", name: "Branding", desc: "Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence." },
-            { id: "05", name: "Web Design", desc: "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience." }
+            { id: "1", name: "Videography", desc: "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for shops, products, and visualizations." },
+            { id: "2", name: "Editing", desc: "High-quality editing that showcases designs with custom lighting, textures, and materials to bring concepts to life." },
+            { id: "3", name: "Motion Design", desc: "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences." },
+            { id: "4", name: "Branding", desc: "Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence." },
+            { id: "5", name: "Web Design", desc: "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience." }
         ],
         ar: [
-            { id: "01", name: "تصوير الفيديو", desc: "إنشاء عناصر وتفاصيل مرئية مخصصة تناسب احتياجات مشروعك، مثالية للمتاجر، المنتجات، والعروض البصرية." },
-            { id: "02", name: "المونتاج وتحرير الفيديو", desc: "تحرير ومونتاج عالي الجودة يبرز تصاميمك بإضاءة، ملمس، ومؤثرات بصرية تنبض بالحياة." },
-            { id: "03", name: "تصميم الموشن جرافيك", desc: "تحريك تفاعلي ورسوم متحركة تضيف الحيوية لعلامتك التجارية ومنتجاتك وتجاربك الرقمية." },
-            { id: "04", name: "الهوية البصرية والبراندنج", desc: "بناء هويات بصرية متكاملة وشعارات فريدة تعبر عن حضور مميز ولا يُنسى لعلامتك التجارية." },
-            { id: "05", name: "تصميم المواقع", desc: "تصميم مواقع إنترنت حديثة وجذابة تركز على تجربة المستخدم، الخطوط، وتناسق الألوان لتحقيق أعلى تفاعل." }
+            { id: "1", name: "تصوير الفيديو", desc: "إنشاء عناصر وتفاصيل مرئية مخصصة تناسب احتياجات مشروعك، مثالية للمتاجر، المنتجات، والعروض البصرية." },
+            { id: "2", name: "المونتاج وتحرير الفيديو", desc: "تحرير ومونتاج عالي الجودة يبرز تصاميمك بإضاءة، ملمس، ومؤثرات بصرية تنبض بالحياة." },
+            { id: "3", name: "تصميم الموشن جرافيك", desc: "تحريك تفاعلي ورسوم متحركة تضيف الحيوية لعلامتك التجارية ومنتجاتك وتجاربك الرقمية." },
+            { id: "4", name: "الهوية البصرية والبراندنج", desc: "بناء هويات بصرية متكاملة وشعارات فريدة تعبر عن حضور مميز ولا يُنسى لعلامتك التجارية." },
+            { id: "5", name: "تصميم المواقع", desc: "تصميم مواقع إنترنت حديثة وجذابة تركز على تجربة المستخدم، الخطوط، وتناسق الألوان لتحقيق أعلى تفاعل." }
         ]
     };
 
@@ -252,15 +252,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const textAlignment = isAr ? 'text-right' : 'text-left';
         const flexDir = isAr ? 'flex-row-reverse' : 'flex-row';
         
-        // الأرقام في العربي على اليمين (order-2) والنص يسار (order-1)
-        // الأرقام في الإنجليزي على اليسار (order-1) والنص يمين (order-2)
+        // الترتيب: الأرقام يميناً في العربي، ويساراً في الإنجليزي
         const numberOrder = isAr ? 'md:order-2 md:text-right' : 'md:order-1 md:text-left';
         const textOrder = isAr ? 'md:order-1' : 'md:order-2';
 
         selectedServices.forEach(svc => {
             servicesList.innerHTML += `
             <div class="flex flex-col md:${flexDir} items-start md:items-center py-8 sm:py-12 border-b border-[#0C0C0C]/15 group transition-colors duration-300 hover:bg-[#0C0C0C]/5 px-2 ${textAlignment}">
-                <!-- رقم الخدمة -->
+                <!-- رقم الخدمة (بدون أصفار إضافية) -->
                 <div class="text-[#0C0C0C] font-black leading-none tracking-tighter w-full md:w-1/3 mb-4 md:mb-0 text-[18vw] sm:text-[14vw] md:text-[10vw] ${numberOrder}">
                     ${svc.id}
                 </div>
@@ -277,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectsData = {
         en: [
             {
-                id: "01",
+                id: "1",
                 name: "Nextlevel Studio",
                 category: "Client Project",
                 buttonText: "Live Project",
@@ -286,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
             },
             {
-                id: "02",
+                id: "2",
                 name: "Aura Brand Identity",
                 category: "Personal Project",
                 buttonText: "Live Project",
@@ -295,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"
             },
             {
-                id: "03",
+                id: "3",
                 name: "Solaris Digital",
                 category: "Client Project",
                 buttonText: "Live Project",
@@ -306,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
         ar: [
             {
-                id: "01",
+                id: "1",
                 name: "استوديو نيكست ليفيل",
                 category: "مشروع عميل",
                 buttonText: "عرض المشروع",
@@ -315,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
             },
             {
-                id: "02",
+                id: "2",
                 name: "هوية أورا التجارية",
                 category: "مشروع شخصي",
                 buttonText: "عرض المشروع",
@@ -324,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"
             },
             {
-                id: "03",
+                id: "3",
                 name: "سولاريس ديجيتال",
                 category: "مشروع عميل",
                 buttonText: "عرض المشروع",
@@ -353,9 +352,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="project-card w-full rounded-[30px] md:rounded-[50px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-8 flex flex-col justify-between overflow-hidden shadow-2xl" 
                  style="top: ${cardTopOffset}px; z-index: ${idx + 10}; transform: scale(${scaleFactor})">
                 
-                <!-- Header -->
+                <!-- Header (يتم قلبه بالكامل لليمين في العربية) -->
                 <div class="flex ${flexHeaderDir} justify-between items-center w-full border-b border-[#D7E2EA]/20 pb-4">
                     <div class="flex ${flexHeaderDir} items-center gap-4 ${textDir}">
+                        <!-- الرقم بدون صفر زائد -->
                         <span class="text-[#D7E2EA] font-black text-4xl sm:text-6xl">${project.id}</span>
                         <div class="flex flex-col">
                             <span class="text-[#D7E2EA]/60 uppercase tracking-widest text-[10px]">${project.category}</span>
