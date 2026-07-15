@@ -164,34 +164,53 @@ document.addEventListener("DOMContentLoaded", () => {
         ar: "مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!"
     };
 
-    function triggerAboutAnimation(isAr) {
-        const textContainer = document.getElementById('about-text');
-        if (textContainer && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            const originalText = isAr ? aboutTexts.ar : aboutTexts.en;
-            
-            // تفكيك النص إلى حروف
-            textContainer.innerHTML = originalText.split('').map(char => 
-                `<span class="opacity-20 transition-all duration-200 inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
-            ).join('');
+// استبدل الدالة القديمة بهذا الكود
+function triggerAboutAnimation(isAr) {
+    const textContainer = document.getElementById('about-text');
+    if (!textContainer || typeof gsap === 'undefined') return;
 
-            const chars = textContainer.querySelectorAll('span');
-            
-            // إيقاف أي أنيميشن قديم قبل تشغيل الجديد لمنع التداخل
-            gsap.killTweensOf(chars);
-            
-            gsap.to(chars, {
-                opacity: 1,
-                color: "#D7E2EA",
-                stagger: 0.02,
+    // مسح أي أنيميشن سابق
+    gsap.killTweensOf(textContainer);
+    if (textContainer.querySelectorAll('span').length > 0) {
+        gsap.killTweensOf(textContainer.querySelectorAll('span'));
+    }
+
+    if (isAr) {
+        // للغة العربية: نقوم بإظهار النص كاملاً (دون تقطيع أحرف) للحفاظ على اتصال الحروف
+        textContainer.innerHTML = aboutTexts.ar; 
+        gsap.fromTo(textContainer, 
+            { opacity: 0, y: 20 }, 
+            { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                ease: "power2.out",
                 scrollTrigger: {
                     trigger: "#about-text",
-                    start: "top 80%",
-                    end: "bottom 45%",
-                    scrub: 0.5
-                }
-            });
-        }
+                    start: "top 80%"
+                } 
+            }
+        );
+    } else {
+        // للغة الإنجليزية: نستخدم تأثير تقطيع الأحرف كما هو
+        textContainer.innerHTML = aboutTexts.en.split('').map(char => 
+            `<span class="opacity-20 transition-all duration-200 inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+
+        const chars = textContainer.querySelectorAll('span');
+        gsap.to(chars, {
+            opacity: 1,
+            color: "#D7E2EA",
+            stagger: 0.02,
+            scrollTrigger: {
+                trigger: "#about-text",
+                start: "top 80%",
+                end: "bottom 45%",
+                scrub: 0.5
+            }
+        });
     }
+}}
 
     // 6. رندرة قسم الخدمات
     const servicesData = {
