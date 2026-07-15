@@ -12,97 +12,9 @@
     
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-        html, body {
-            background-color: #0C0C0C;
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            color: #D7E2EA;
-        }
 
-        /* التحكم باللغات عبر الـ CSS مباشرة لضمان السرعة والدقة */
-        html[lang="en"] .lang-ar {
-            display: none !important;
-        }
-        html[lang="ar"] .lang-en {
-            display: none !important;
-        }
-
-        /* خط القاهرة المريح للعين للغة العربية */
-        html[lang="ar"] {
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .hero-heading {
-            background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0C0C0C;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #252525;
-            border-radius: 3px;
-        }
-
-        /* Gradient Button Style */
-        .btn-gradient {
-            background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
-            box-shadow: 0px 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset;
-            outline: 2px solid white;
-            outline-offset: -3px;
-        }
-
-        /* تنسيق بطاقات الخدمات والمشاريع */
-        .service-row, .project-card-custom {
-            border-bottom: 1px solid rgba(215, 226, 234, 0.1);
-            padding: 24px 0;
-            transition: all 0.3s ease;
-        }
-        .service-row:hover {
-            padding-left: 8px;
-            padding-right: 8px;
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        /* أيقونة الواتساب العائمة والمضمونة */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 9999;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 4px 20px rgba(37, 211, 102, 0.5);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.15) rotate(5deg);
-            box-shadow: 0px 8px 25px rgba(37, 211, 102, 0.7);
-        }
-        /* قلب مكان الأيقونة في الواجهة العربية لتفادي حجب المحتوى */
-        html[lang="ar"] .whatsapp-float {
-            right: auto;
-            left: 24px;
-        }
-    </style>
+    <!-- ملف الستايل المفصول -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-[#0C0C0C]">
 
@@ -140,7 +52,7 @@
             </div>
         </nav>
 
-        <!-- Floating Portrait Image Container (بدون العناصر الـ 3D العشوائية) -->
+        <!-- Floating Portrait Image Container -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <div id="magnetic-photo" class="pointer-events-auto transition-transform duration-300 ease-out">
                 <div class="relative w-[240px] sm:w-[300px] md:w-[380px] lg:w-[440px]">
@@ -180,7 +92,7 @@
         <div id="marquee-row2" class="flex gap-3 w-[200%] select-none pointer-events-none"></div>
     </section>
 
-    <!-- ABOUT SECTION (تمت إزالة عناصر الـ 3D والوجوه تماماً) -->
+    <!-- ABOUT SECTION -->
     <section id="about" class="relative min-h-screen w-full bg-[#0C0C0C] flex flex-col justify-center items-center px-5 py-20 overflow-hidden">
         <div class="flex flex-col items-center justify-center text-center max-w-4xl z-20">
             <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-[12vw] md:text-[8vw] mb-10">
@@ -208,49 +120,8 @@
                 <span class="lang-ar">الخدمات</span>
             </h2>
 
-            <!-- قائمة الخدمات المترجمة محلياً وثابتة لضمان الدقة -->
-            <div class="flex flex-col border-t border-[#0C0C0C]/15" id="services-list">
-                
-                <!-- الخدمة 1 -->
-                <div class="service-row flex flex-col md:flex-row justify-between items-start md:items-center py-8 gap-4 border-b border-[#0C0C0C]/10">
-                    <span class="font-bold text-xl md:text-2xl opacity-40">01</span>
-                    <h3 class="font-extrabold text-2xl md:text-4xl">
-                        <span class="lang-en">Branding & Identity</span>
-                        <span class="lang-ar">بناء الهوية والعلامة التجارية</span>
-                    </h3>
-                    <p class="max-w-md text-[#0C0C0C]/75 text-sm md:text-base">
-                        <span class="lang-en">We design logos, assets, and overall visual identities that establish credibility and define your core business values.</span>
-                        <span class="lang-ar">نصمم الشعارات، الأصول البصرية، والهويات الكاملة التي تؤسس المصداقية وتعبر عن قيم مشروعك بدقة.</span>
-                    </p>
-                </div>
-
-                <!-- الخدمة 2 -->
-                <div class="service-row flex flex-col md:flex-row justify-between items-start md:items-center py-8 gap-4 border-b border-[#0C0C0C]/10">
-                    <span class="font-bold text-xl md:text-2xl opacity-40">02</span>
-                    <h3 class="font-extrabold text-2xl md:text-4xl">
-                        <span class="lang-en">Web Design & UI/UX</span>
-                        <span class="lang-ar">تصميم الويب وتجربة المستخدم</span>
-                    </h3>
-                    <p class="max-w-md text-[#0C0C0C]/75 text-sm md:text-base">
-                        <span class="lang-en">Beautiful, high-performing website layouts crafted to offer seamless interfaces on both desktop and mobile screens.</span>
-                        <span class="lang-ar">واجهات وتصاميم مواقع جذابة وسريعة مصممة خصيصاً لتوفر تجربة مستخدم سلسة على الحواسيب والهواتف.</span>
-                    </p>
-                </div>
-
-                <!-- الخدمة 3 -->
-                <div class="service-row flex flex-col md:flex-row justify-between items-start md:items-center py-8 gap-4 border-b border-[#0C0C0C]/10">
-                    <span class="font-bold text-xl md:text-2xl opacity-40">03</span>
-                    <h3 class="font-extrabold text-2xl md:text-4xl">
-                        <span class="lang-en">Video Production</span>
-                        <span class="lang-ar">إنتاج وتحرير الفيديو</span>
-                    </h3>
-                    <p class="max-w-md text-[#0C0C0C]/75 text-sm md:text-base">
-                        <span class="lang-en">Dynamic editing, storytelling, and high-quality motion sequences designed to instantly grab your audience's attention.</span>
-                        <span class="lang-ar">مونتاج ديناميكي، سرد قصصي، ومؤثرات حركية عالية الجودة مصممة لجذب انتباه جمهورك على الفور.</span>
-                    </p>
-                </div>
-
-            </div>
+            <!-- قائمة الخدمات: يتم رندرتها ديناميكياً من App.js -->
+            <div class="flex flex-col border-t border-[#0C0C0C]/15" id="services-list"></div>
         </div>
     </section>
 
@@ -262,43 +133,8 @@
                 <span class="lang-ar">المشاريع المميزة</span>
             </h2>
             
-            <div id="projects-container" class="relative flex flex-col items-center w-full gap-12">
-                <!-- مشروع 1 -->
-                <div class="project-card-custom w-full flex flex-col md:flex-row justify-between gap-6 pb-12">
-                    <div class="w-full md:w-1/2">
-                        <h3 class="font-extrabold text-2xl md:text-4xl mb-4">
-                            <span class="lang-en">Project One - Nike Rebrand</span>
-                            <span class="lang-ar">المشروع الأول - إعادة بناء هوية نايكي</span>
-                        </h3>
-                        <p class="text-[#D7E2EA]/60 text-sm md:text-base mb-4">
-                            <span class="lang-en">A complete modern overhaul of identity, messaging, and digital layouts.</span>
-                            <span class="lang-ar">تجديد عصري شامل للهوية، الرسالة التسويقية والواجهات الرقمية.</span>
-                        </p>
-                    </div>
-                    <div class="w-full md:w-1/2 rounded-2xl overflow-hidden bg-neutral-900 h-64 flex items-center justify-center">
-                        <span class="text-white/20 lang-en">[Project Visual 1]</span>
-                        <span class="text-white/20 lang-ar">[عرض مرئي 1]</span>
-                    </div>
-                </div>
-
-                <!-- مشروع 2 -->
-                <div class="project-card-custom w-full flex flex-col md:flex-row justify-between gap-6 pb-12">
-                    <div class="w-full md:w-1/2">
-                        <h3 class="font-extrabold text-2xl md:text-4xl mb-4">
-                            <span class="lang-en">Project Two - Tech App</span>
-                            <span class="lang-ar">المشروع الثاني - تطبيق تقني حديث</span>
-                        </h3>
-                        <p class="text-[#D7E2EA]/60 text-sm md:text-base mb-4">
-                            <span class="lang-en">Designing a seamless dashboard interface to simplify daily workflows.</span>
-                            <span class="lang-ar">تصميم واجهة لوحة تحكم سلسة لتبسيط مجرى العمل اليومي للمستخدمين.</span>
-                        </p>
-                    </div>
-                    <div class="w-full md:w-1/2 rounded-2xl overflow-hidden bg-neutral-900 h-64 flex items-center justify-center">
-                        <span class="text-white/20 lang-en">[Project Visual 2]</span>
-                        <span class="text-white/20 lang-ar">[عرض مرئي 2]</span>
-                    </div>
-                </div>
-            </div>
+            <!-- كروت المشاريع: يتم رندرتها ديناميكياً من App.js -->
+            <div id="projects-container" class="relative flex flex-col items-center w-full gap-12"></div>
         </div>
     </section>
 
@@ -320,63 +156,24 @@
                 <a href="mailto:hello@dalmktg.com" class="hover:text-pink-500 transition-colors duration-200">
                     hello@dalmktg.com
                 </a>
-                <span class="text-white/40">© <span id="year"></span> Dalmktg. <span class="lang-en">All rights reserved.</span><span class="lang-ar">جميع الحقوق محفوظة.</span></span>
+                <span class="text-white/40">©️ <span id="year"></span> Dalmktg. <span class="lang-en">All rights reserved.</span><span class="lang-ar">جميع الحقوق محفوظة.</span></span>
             </div>
         </div>
     </section>
 
-    <!-- أيقونة واتساب عائمة أصلية ومضمونة بدون مكتبات خارجية (تم تعديل الرقم إلى الكويت كمثال) -->
+    <!-- أيقونة واتساب عائمة -->
     <a href="https://wa.me/96512345678" target="_blank" rel="noopener noreferrer" class="whatsapp-float" id="whatsapp-btn">
-        <!-- رسمة شعار واتساب الأصلي الموثوق -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.588 1.977 14.132.953 11.5.953c-5.439 0-9.859 4.37-9.863 9.8-.001 1.636.433 3.238 1.256 4.674l-.991 3.622 3.745-.981zm10.668-7.32c-.1-.15-.36-.25-.75-.45s-2.3-1.134-2.66-1.27-.6-.201-.85.151c-.25.35-.95 1.134-1.15 1.385-.2.25-.4.25-.79.05-.39-.2-1.65-.609-3.14-1.939-1.16-1.033-1.94-2.31-2.17-2.71-.23-.4-.02-.61.18-.81.18-.18.4-.45.6-.7.2-.25.25-.4.4-.65.15-.25.05-.45-.05-.65-.1-.2-.85-2.06-1.15-2.814-.3-.725-.6-1.15-.85-1.15-.2-.01-.45-.01-.7-.01-.25 0-.65.1-1 .5-.35.4-1.35 1.317-1.35 3.21s1.38 3.722 1.58 3.975c.2.252 2.71 4.108 6.57 5.739.914.387 1.63.618 2.18.79.921.28 1.76.24 2.42.14.74-.11 2.3-.94 2.62-1.85.33-.9.33-1.66.23-1.85-.1-.15-.36-.25-.75-.45z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
         </svg>
     </a>
 
-    <!-- كود الجافا سكريبت المتكامل لمنع تداخل ملف app.js القديم وتأمين ترجمة فورية وخالية من العيوب -->
-    <script>
-        // تحديد وحفظ خيار اللغة المفضل للزائر
-        let currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    <!-- مكتبات الحركة والأيقونات المطلوبة من App.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
-        function applyLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('selectedLanguage', lang);
-            document.documentElement.lang = lang;
-            
-            const isAr = lang === 'ar';
-            
-            // ضبط اتجاه الصفحة (يمين لليسار للعربي، ويسار لليمين للإنجليزي)
-            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            
-            // تحديث نص زر التحويل بأمان
-            const langBtn = document.getElementById('lang-toggle');
-            if (langBtn) {
-                langBtn.innerText = isAr ? 'EN' : 'العربية';
-            }
-        }
-
-        // تفعيل زر تغيير اللغة عند الضغط
-        const langBtn = document.getElementById('lang-toggle');
-        if (langBtn) {
-            langBtn.addEventListener('click', () => {
-                const nextLang = currentLang === 'ar' ? 'en' : 'ar';
-                applyLanguage(nextLang);
-            });
-        }
-
-        // تطبيق اللغة فور تحميل الصفحة لمنع الوميض
-        applyLanguage(currentLang);
-
-        // تفعيل التمرير التلقائي لزر "تواصل معي"
-        function scrollToContact() {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // تحديث السنة في الفوتر تلقائياً
-        document.getElementById('year').innerText = new Date().getFullYear();
-    </script>
+    <!-- ملف الجافا سكريبت الوحيد المسؤول عن كل التفاعل -->
+    <script src="App.js"></script>
 </body>
 </html>

@@ -1,0 +1,91 @@
+html, body {
+    background-color: #0C0C0C;
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    color: #D7E2EA;
+}
+
+/* التحكم باللغات عبر الـ CSS مباشرة لضمان السرعة والدقة */
+html[lang="en"] .lang-ar {
+    display: none !important;
+}
+html[lang="ar"] .lang-en {
+    display: none !important;
+}
+
+/* خط القاهرة المريح للعين للغة العربية */
+html[lang="ar"] {
+    font-family: 'Cairo', sans-serif;
+}
+
+.hero-heading {
+    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0C0C0C;
+}
+::-webkit-scrollbar-thumb {
+    background: #252525;
+    border-radius: 3px;
+}
+
+/* Gradient Button Style */
+.btn-gradient {
+    background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
+    box-shadow: 0px 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset;
+    outline: 2px solid white;
+    outline-offset: -3px;
+}
+
+/* تنسيق بطاقات الخدمات والمشاريع */
+.service-row, .project-card-custom {
+    border-bottom: 1px solid rgba(215, 226, 234, 0.1);
+    padding: 24px 0;
+    transition: all 0.3s ease;
+}
+.service-row:hover {
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* أيقونة الواتساب العائمة والمضمونة */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 20px rgba(37, 211, 102, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+.whatsapp-float:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0px 8px 25px rgba(37, 211, 102, 0.7);
+}
+.whatsapp-float svg {
+    display: block;
+}
+/* قلب مكان الأيقونة في الواجهة العربية لتفادي حجب المحتوى */
+html[lang="ar"] .whatsapp-float {
+    right: auto;
+    left: 24px;
+}
