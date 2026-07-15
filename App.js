@@ -75,9 +75,39 @@ function triggerAboutAnimation(isAr) {
                 trigger: "#about-text",
                 start: "top 80%",
                 end: "bottom 45%",
-                scrub: 0.5
+                scroll: 0.5
             }
         });
+    }
+}
+
+// دالة تأثير القلوب المتطايرة
+function initHearts() {
+    const container = document.getElementById('hearts-container');
+    if (!container) return;
+
+    const hearts = ["❤️", "💖", "✨", "💕"];
+    const count = 15; // عدد القلوب المتطايرة
+
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('span');
+        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.position = 'absolute';
+        heart.style.pointerEvents = 'none';
+        
+        const size = Math.random() * (30 - 14) + 14; // حجم عشوائي للقلب
+        const left = Math.random() * 100; // توزيع عشوائي على العرض
+        const duration = Math.random() * (12 - 7) + 7; // سرعة عشوائية للصعود
+        const delay = Math.random() * -15; // تأخير لتبدأ الحركة فوراً دون انتظار
+
+        heart.style.fontSize = `${size}px`;
+        heart.style.left = `${left}%`;
+        heart.style.bottom = `-40px`;
+        heart.style.opacity = '0';
+        heart.style.animation = `heartFlyUp ${duration}s linear infinite`;
+        heart.style.animationDelay = `${delay}s`;
+
+        container.appendChild(heart);
     }
 }
 
@@ -252,18 +282,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const textAlignment = isAr ? 'text-right' : 'text-left';
         const flexDir = isAr ? 'flex-row-reverse' : 'flex-row';
         
-        // الترتيب: الأرقام يميناً في العربي، ويساراً في الإنجليزي
         const numberOrder = isAr ? 'md:order-2 md:text-right' : 'md:order-1 md:text-left';
         const textOrder = isAr ? 'md:order-1' : 'md:order-2';
 
         selectedServices.forEach(svc => {
             servicesList.innerHTML += `
             <div class="flex flex-col md:${flexDir} items-start md:items-center py-8 sm:py-12 border-b border-[#0C0C0C]/15 group transition-colors duration-300 hover:bg-[#0C0C0C]/5 px-2 ${textAlignment}">
-                <!-- رقم الخدمة (بدون أصفار إضافية) -->
                 <div class="text-[#0C0C0C] font-black leading-none tracking-tighter w-full md:w-1/3 mb-4 md:mb-0 text-[18vw] sm:text-[14vw] md:text-[10vw] ${numberOrder}">
                     ${svc.id}
                 </div>
-                <!-- نصوص الخدمة -->
                 <div class="w-full md:w-2/3 flex flex-col gap-2 ${textOrder}">
                     <h3 class="text-[#0C0C0C] font-semibold uppercase tracking-wide text-2xl md:text-3xl">${svc.name}</h3>
                     <p class="text-[#0C0C0C]/75 font-light leading-relaxed max-w-2xl text-base sm:text-lg">${svc.desc}</p>
@@ -334,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
     };
 
-function renderProjects(isAr) {
+    function renderProjects(isAr) {
         const projectsContainer = document.getElementById('projects-container');
         if (!projectsContainer) return;
         
@@ -352,10 +379,8 @@ function renderProjects(isAr) {
             <div class="project-card w-full rounded-[30px] md:rounded-[50px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-8 flex flex-col justify-between overflow-hidden shadow-2xl" 
                  style="top: ${cardTopOffset}px; z-index: ${idx + 10}; transform: scale(${scaleFactor})">
                 
-                <!-- Header (يتم قلبه بالكامل لليمين في العربية) -->
                 <div class="flex ${flexHeaderDir} justify-between items-center w-full border-b border-[#D7E2EA]/20 pb-4">
                     <div class="flex ${flexHeaderDir} items-center gap-4 ${textDir}">
-                        <!-- تم إزالة سطر الرقم من هنا لتختفي أرقام المشاريع فقط -->
                         <div class="flex flex-col">
                             <span class="text-[#D7E2EA]/60 uppercase tracking-widest text-[10px]">${project.category}</span>
                             <h3 class="text-[#D7E2EA] font-semibold uppercase tracking-wide text-sm sm:text-xl">${project.name}</h3>
@@ -366,7 +391,6 @@ function renderProjects(isAr) {
                     </button>
                 </div>
 
-                <!-- Grid Images Content -->
                 <div class="grid grid-cols-12 gap-4 flex-1 mt-4 sm:mt-6 overflow-hidden">
                     <div class="col-span-5 flex flex-col gap-4 h-full justify-between">
                         <div class="flex-1 rounded-[16px] sm:rounded-[30px] overflow-hidden border border-[#D7E2EA]/10">
@@ -404,37 +428,7 @@ function renderProjects(isAr) {
 
     // تشغيل الصفحة باللغة الافتراضية المحددة عند أول تحميل
     applyLanguage(currentLang);
-    function initHearts() {
-    const container = document.getElementById('hearts-container');
-    if (!container) return;
-
-    const hearts = ["❤️", "💖", "✨", "💕"];
-    const count = 15; // عدد القلوب المتطايرة
-
-    for (let i = 0; i < count; i++) {
-        const heart = document.createElement('span');
-        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.position = 'absolute';
-        heart.style.pointerEvents = 'none';
-        
-        const size = Math.random() * (30 - 14) + 14; // حجم عشوائي للقلب
-        const left = Math.random() * 100; // توزيع عشوائي على العرض
-        const duration = Math.random() * (12 - 7) + 7; // سرعة عشوائية للصعود
-        const delay = Math.random() * -15; // تأخير لتبدأ الحركة فوراً دون انتظار
-
-        heart.style.fontSize = `${size}px`;
-        heart.style.left = `${left}%`;
-        heart.style.bottom = `-40px`;
-        heart.style.opacity = '0';
-        heart.style.animation = `heartFlyUp ${duration}s linear infinite`;
-        heart.style.animationDelay = `${delay}s`;
-
-        container.appendChild(heart);
-    }
-}
-
-// تشغيل دالة القلوب فور تحميل الصفحة
-document.addEventListener("DOMContentLoaded", () => {
+    
+    // تشغيل القلوب عند التحميل مباشرة
     initHearts();
-});
 });
