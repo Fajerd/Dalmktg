@@ -21,37 +21,47 @@ const aboutTexts = {
     ar: "مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!"
 };
 
-// دالة حركة نص من أنا (تم تصحيح موضعها لتكون عامة وسهلة الاستدعاء)
+// دالة حركة نص من أنا (تدعم اللغة العربية بشكل مثالي وبدون تفكيك للحروف)
 function triggerAboutAnimation(isAr) {
     const textContainer = document.getElementById('about-text');
-    if (!textContainer || typeof gsap !== 'undefined' === false) return;
+    if (!textContainer || typeof gsap === 'undefined') return;
 
     // مسح أي أنيميشن سابق وتفريغ العناصر لمنع التداخل
     gsap.killTweensOf(textContainer);
+    textContainer.style.clipPath = "none"; 
+    textContainer.style.opacity = "1";
+
     const existingSpans = textContainer.querySelectorAll('span');
     if (existingSpans.length > 0) {
         gsap.killTweensOf(existingSpans);
     }
 
     if (isAr) {
-        // للغة العربية: نقوم بإظهار النص كاملاً (دون تقطيع أحرف) للحفاظ على اتصال الحروف وصحتها
+        // للغة العربية: نضع النص العربي الصافي بدون أي تقطيع أحرف لمنع تفككها
         textContainer.innerHTML = aboutTexts.ar; 
+        
+        // تطبيق تأثير كشف انسيابي ناعم يتوافق مع حركة العين من اليمين إلى اليسار
         gsap.fromTo(textContainer, 
-            { opacity: 0, y: 20 }, 
+            { 
+                opacity: 0,
+                y: 15,
+                clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)"
+            }, 
             { 
                 opacity: 1, 
-                y: 0, 
-                duration: 1, 
-                ease: "power2.out",
+                y: 0,
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1.4, 
+                ease: "power3.out",
                 scrollTrigger: {
                     trigger: "#about-text",
-                    start: "top 80%",
+                    start: "top 85%",
                     toggleActions: "play none none none"
                 } 
             }
         );
     } else {
-        // للغة الإنجليزية: نستخدم تأثير تقطيع الأحرف المعتاد
+        // للغة الإنجليزية: نستخدم تأثير تقطيع الأحرف والظهور التدريجي المعتاد
         textContainer.innerHTML = aboutTexts.en.split('').map(char => 
             `<span class="opacity-20 transition-all duration-200 inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
         ).join('');
@@ -238,16 +248,24 @@ document.addEventListener("DOMContentLoaded", () => {
         
         servicesList.innerHTML = "";
         const selectedServices = isAr ? servicesData.ar : servicesData.en;
+        
         const textAlignment = isAr ? 'text-right' : 'text-left';
-        const flexDir = isAr ? 'md:flex-row-reverse' : 'md:flex-row';
+        const flexDir = isAr ? 'flex-row-reverse' : 'flex-row';
+        
+        // الأرقام في العربي على اليمين (order-2) والنص يسار (order-1)
+        // الأرقام في الإنجليزي على اليسار (order-1) والنص يمين (order-2)
+        const numberOrder = isAr ? 'md:order-2 md:text-right' : 'md:order-1 md:text-left';
+        const textOrder = isAr ? 'md:order-1' : 'md:order-2';
 
         selectedServices.forEach(svc => {
             servicesList.innerHTML += `
-            <div class="flex flex-col ${flexDir} items-start md:items-center py-8 sm:py-12 border-b border-[#0C0C0C]/15 group transition-colors duration-300 hover:bg-[#0C0C0C]/5 px-2 ${textAlignment}">
-                <div class="text-[#0C0C0C] font-black leading-none tracking-tighter w-full md:w-1/3 mb-4 md:mb-0 text-[18vw] sm:text-[14vw] md:text-[10vw]">
+            <div class="flex flex-col md:${flexDir} items-start md:items-center py-8 sm:py-12 border-b border-[#0C0C0C]/15 group transition-colors duration-300 hover:bg-[#0C0C0C]/5 px-2 ${textAlignment}">
+                <!-- رقم الخدمة -->
+                <div class="text-[#0C0C0C] font-black leading-none tracking-tighter w-full md:w-1/3 mb-4 md:mb-0 text-[18vw] sm:text-[14vw] md:text-[10vw] ${numberOrder}">
                     ${svc.id}
                 </div>
-                <div class="w-full md:w-2/3 flex flex-col gap-2">
+                <!-- نصوص الخدمة -->
+                <div class="w-full md:w-2/3 flex flex-col gap-2 ${textOrder}">
                     <h3 class="text-[#0C0C0C] font-semibold uppercase tracking-wide text-2xl md:text-3xl">${svc.name}</h3>
                     <p class="text-[#0C0C0C]/75 font-light leading-relaxed max-w-2xl text-base sm:text-lg">${svc.desc}</p>
                 </div>
