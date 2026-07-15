@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
     };
 
-    function renderProjects(isAr) {
+function renderProjects(isAr) {
         const projectsContainer = document.getElementById('projects-container');
         if (!projectsContainer) return;
         
@@ -355,8 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <!-- Header (يتم قلبه بالكامل لليمين في العربية) -->
                 <div class="flex ${flexHeaderDir} justify-between items-center w-full border-b border-[#D7E2EA]/20 pb-4">
                     <div class="flex ${flexHeaderDir} items-center gap-4 ${textDir}">
-                        <!-- الرقم بدون صفر زائد -->
-                        <span class="text-[#D7E2EA] font-black text-4xl sm:text-6xl">${project.id}</span>
+                        <!-- تم إزالة سطر الرقم من هنا لتختفي أرقام المشاريع فقط -->
                         <div class="flex flex-col">
                             <span class="text-[#D7E2EA]/60 uppercase tracking-widest text-[10px]">${project.category}</span>
                             <h3 class="text-[#D7E2EA] font-semibold uppercase tracking-wide text-sm sm:text-xl">${project.name}</h3>
