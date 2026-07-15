@@ -404,4 +404,37 @@ function renderProjects(isAr) {
 
     // تشغيل الصفحة باللغة الافتراضية المحددة عند أول تحميل
     applyLanguage(currentLang);
+    function initHearts() {
+    const container = document.getElementById('hearts-container');
+    if (!container) return;
+
+    const hearts = ["❤️", "💖", "✨", "💕"];
+    const count = 15; // عدد القلوب المتطايرة
+
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('span');
+        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.position = 'absolute';
+        heart.style.pointerEvents = 'none';
+        
+        const size = Math.random() * (30 - 14) + 14; // حجم عشوائي للقلب
+        const left = Math.random() * 100; // توزيع عشوائي على العرض
+        const duration = Math.random() * (12 - 7) + 7; // سرعة عشوائية للصعود
+        const delay = Math.random() * -15; // تأخير لتبدأ الحركة فوراً دون انتظار
+
+        heart.style.fontSize = `${size}px`;
+        heart.style.left = `${left}%`;
+        heart.style.bottom = `-40px`;
+        heart.style.opacity = '0';
+        heart.style.animation = `heartFlyUp ${duration}s linear infinite`;
+        heart.style.animationDelay = `${delay}s`;
+
+        container.appendChild(heart);
+    }
+}
+
+// تشغيل دالة القلوب فور تحميل الصفحة
+document.addEventListener("DOMContentLoaded", () => {
+    initHearts();
+});
 });
