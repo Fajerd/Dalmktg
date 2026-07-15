@@ -15,6 +15,62 @@ function scrollToContact() {
     }
 }
 
+// نصوص قسم من أنا (About) خارج الحدث ليسهل الوصول إليها
+const aboutTexts = {
+    en: "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!",
+    ar: "مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!"
+};
+
+// دالة حركة نص من أنا (تم تصحيح موضعها لتكون عامة وسهلة الاستدعاء)
+function triggerAboutAnimation(isAr) {
+    const textContainer = document.getElementById('about-text');
+    if (!textContainer || typeof gsap !== 'undefined' === false) return;
+
+    // مسح أي أنيميشن سابق وتفريغ العناصر لمنع التداخل
+    gsap.killTweensOf(textContainer);
+    const existingSpans = textContainer.querySelectorAll('span');
+    if (existingSpans.length > 0) {
+        gsap.killTweensOf(existingSpans);
+    }
+
+    if (isAr) {
+        // للغة العربية: نقوم بإظهار النص كاملاً (دون تقطيع أحرف) للحفاظ على اتصال الحروف وصحتها
+        textContainer.innerHTML = aboutTexts.ar; 
+        gsap.fromTo(textContainer, 
+            { opacity: 0, y: 20 }, 
+            { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: "#about-text",
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                } 
+            }
+        );
+    } else {
+        // للغة الإنجليزية: نستخدم تأثير تقطيع الأحرف المعتاد
+        textContainer.innerHTML = aboutTexts.en.split('').map(char => 
+            `<span class="opacity-20 transition-all duration-200 inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+
+        const chars = textContainer.querySelectorAll('span');
+        gsap.to(chars, {
+            opacity: 1,
+            color: "#D7E2EA",
+            stagger: 0.02,
+            scrollTrigger: {
+                trigger: "#about-text",
+                start: "top 80%",
+                end: "bottom 45%",
+                scrub: 0.5
+            }
+        });
+    }
+}
+
 // تشغيل الأكواد عند جاهزية الصفحة
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -158,61 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 5. ظهور نص "ABOUT" حرفاً بحرف (ABOUT TEXT REVEAL)
-    const aboutTexts = {
-        en: "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!",
-        ar: "مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!"
-    };
-
-// استبدل الدالة القديمة بهذا الكود
-function triggerAboutAnimation(isAr) {
-    const textContainer = document.getElementById('about-text');
-    if (!textContainer || typeof gsap === 'undefined') return;
-
-    // مسح أي أنيميشن سابق
-    gsap.killTweensOf(textContainer);
-    if (textContainer.querySelectorAll('span').length > 0) {
-        gsap.killTweensOf(textContainer.querySelectorAll('span'));
-    }
-
-    if (isAr) {
-        // للغة العربية: نقوم بإظهار النص كاملاً (دون تقطيع أحرف) للحفاظ على اتصال الحروف
-        textContainer.innerHTML = aboutTexts.ar; 
-        gsap.fromTo(textContainer, 
-            { opacity: 0, y: 20 }, 
-            { 
-                opacity: 1, 
-                y: 0, 
-                duration: 1, 
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: "#about-text",
-                    start: "top 80%"
-                } 
-            }
-        );
-    } else {
-        // للغة الإنجليزية: نستخدم تأثير تقطيع الأحرف كما هو
-        textContainer.innerHTML = aboutTexts.en.split('').map(char => 
-            `<span class="opacity-20 transition-all duration-200 inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
-        ).join('');
-
-        const chars = textContainer.querySelectorAll('span');
-        gsap.to(chars, {
-            opacity: 1,
-            color: "#D7E2EA",
-            stagger: 0.02,
-            scrollTrigger: {
-                trigger: "#about-text",
-                start: "top 80%",
-                end: "bottom 45%",
-                scrub: 0.5
-            }
-        });
-    }
-}}
-
-    // 6. رندرة قسم الخدمات
+    // 5. رندرة قسم الخدمات
     const servicesData = {
         en: [
             { id: "01", name: "Videography", desc: "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for shops, products, and visualizations." },
@@ -253,7 +255,7 @@ function triggerAboutAnimation(isAr) {
         });
     }
 
-    // 7. رندرة وتكديس كروت المشاريع
+    // 6. رندرة وتكديس كروت المشاريع
     const projectsData = {
         en: [
             {
@@ -365,7 +367,7 @@ function triggerAboutAnimation(isAr) {
         });
     }
 
-    // 8. دالة اختيارية لتغيير نصوص الـ HTML الثابتة بالموقع مثل العناوين والأزرار الأخرى
+    // 7. دالة اختيارية لتغيير نصوص الـ HTML الثابتة بالموقع مثل العناوين والأزرار الأخرى
     function translateStaticElements(isAr) {
         // تحديث نص الأنيميشن
         triggerAboutAnimation(isAr);
