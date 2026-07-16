@@ -75,7 +75,7 @@ function triggerAboutAnimation(isAr) {
                 trigger: "#about-text",
                 start: "top 80%",
                 end: "bottom 45%",
-                scroll: 0.5
+                scrub: 0.5 //  تم تعديل الخاصية هنا من scroll الخاطئة إلى scrub الصحيحة والمطابقة لـ GSAP
             }
         });
     }
@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 col1_img1: "https://i.ibb.co/GQCQTTkP/Whats-App-Image-2026-07-16-at-02-04-17.jpg",
                 col1_img2: "https://i.ibb.co/G4DBj20M/Whats-App-Image-2026-07-16-at-02-03-36.jpg",
                 col2_img: "https://i.ibb.co/wNCVWJQ4/Whats-App-Image-2026-07-16-at-02-03-49.jpg"
-       },
+            }, // تم إصلاح إغلاق القوس هنا
             {
                 id: "2",
                 name: "هوية أورا التجارية",
