@@ -339,7 +339,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 col1_img1: "https://i.ibb.co/GQCQTTkP/Whats-App-Image-2026-07-16-at-02-04-17.jpg",
                 col1_img2: "https://i.ibb.co/G4DBj20M/Whats-App-Image-2026-07-16-at-02-03-36.jpg",
                 col2_img: "https://i.ibb.co/wNCVWJQ4/Whats-App-Image-2026-07-16-at-02-03-49.jpg"
-            },
+       },
+            {
                 id: "2",
                 name: "هوية أورا التجارية",
                 category: "مشروع شخصي",
