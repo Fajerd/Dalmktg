@@ -333,14 +333,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ar: [
             {
                 id: "1",
-                name: "استوديو نيكست ليفيل",
+                name: "تصوير فاشون",
                 category: "مشروع عميل",
                 buttonText: "عرض المشروع",
-                col1_img1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-                col1_img2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-                col2_img: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"
+                col1_img1: "https://i.ibb.co/GQCQTTkP/Whats-App-Image-2026-07-16-at-02-04-17.jpg",
+                col1_img2: "https://i.ibb.co/G4DBj20M/Whats-App-Image-2026-07-16-at-02-03-36.jpg",
+                col2_img: "https://i.ibb.co/wNCVWJQ4/Whats-App-Image-2026-07-16-at-02-03-49.jpg"
             },
-            {
                 id: "2",
                 name: "هوية أورا التجارية",
                 category: "مشروع شخصي",
