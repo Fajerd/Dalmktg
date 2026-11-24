@@ -1,184 +1,189 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dalmktg -- Creator</title>
-    
-    <!-- Google Fonts (Kanit & Cairo for Arabic) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Pick language before first paint (no flash). Order: ?lang=ar, saved choice, browser language. -->
+<script>(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('selectedLanguage'),b=(navigator.language||'').toLowerCase().indexOf('ar')===0?'ar':'en',l=q==='ar'||q==='en'?q:s==='ar'||s==='en'?s:b;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';d.className='js'}catch(e){}})()</script>
 
-    <!-- ملف الستايل المفصول -->
-    <link rel="stylesheet" href="styles.css">
+<title>Dalal | Videographer, Video Editor &amp; Brand Designer in Kuwait</title>
+<meta name="description" content="Videographer, video editor and brand designer in Kuwait. Videography, editing, motion design, branding and web design for businesses that want to stand out.">
+<!-- TODO: replace https://dalmktg.com/ everywhere with your real domain -->
+<link rel="canonical" href="https://dalmktg.com/">
+<meta name="theme-color" content="#0C0C0C">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dalmktg">
+<meta property="og:title" content="Dalal | Videographer, Video Editor &amp; Brand Designer in Kuwait">
+<meta property="og:description" content="Videography, editing, motion design, branding and web design for businesses that want to stand out.">
+<meta property="og:url" content="https://dalmktg.com/">
+<meta property="og:image" content="https://i.ibb.co/tMq47LQN/magnific-just-the-head-no-shoulder-9-ROz-TPp-NYZ.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230C0C0C'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='900' text-anchor='middle' fill='%23D7E2EA' font-family='sans-serif'%3ED%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.ibb.co" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;900&family=Kanit:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","@id":"https://dalmktg.com/#site","url":"https://dalmktg.com/","name":"Dalmktg","inLanguage":["en","ar"]},
+{"@type":"Person","@id":"https://dalmktg.com/#dalal","name":"Dalal","alternateName":["دلال","Dalmktg"],"jobTitle":"Videographer, video editor and brand designer","image":"https://i.ibb.co/tMq47LQN/magnific-just-the-head-no-shoulder-9-ROz-TPp-NYZ.png","email":"mailto:dalmktg@gmail.com","knowsLanguage":["en","ar"],"address":{"@type":"PostalAddress","addressCountry":"KW"}},
+{"@type":"ProfessionalService","@id":"https://dalmktg.com/#business","name":"Dalmktg","url":"https://dalmktg.com/","telephone":"+96551318282","email":"dalmktg@gmail.com","areaServed":{"@type":"Country","name":"Kuwait"},"founder":{"@id":"https://dalmktg.com/#dalal"},"makesOffer":[
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Videography"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Video editing"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Motion design"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Branding"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web design"}}]}]}
+</script>
 </head>
-<body class="bg-[#0C0C0C]">
+<body>
+<a class="skip" href="#main"><span class="en" lang="en">Skip to content</span><span class="ar" lang="ar">انتقل إلى المحتوى</span></a>
 
-    <!-- HERO SECTION -->
-    <section class="relative h-screen w-full flex flex-col justify-between overflow-hidden z-20">
-        <!-- Navigation -->
-        <nav class="flex justify-between items-center w-full px-6 md:px-10 pt-6 md:pt-8 z-30">
-            <a href="#" class="font-bold tracking-wider text-[#D7E2EA] text-sm md:text-lg lg:text-[1.4rem]">
-                DALMKTG
-            </a>
-            
-            <div class="flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-                <!-- روابط التصفح المترجمة -->
-                <a href="#about" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
-                    <span class="lang-en">About</span>
-                    <span class="lang-ar">من أنا</span>
-                </a>
-                <a href="#services" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
-                    <span class="lang-en">Services</span>
-                    <span class="lang-ar">الخدمات</span>
-                </a>
-                <a href="#projects" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
-                    <span class="lang-en">Projects</span>
-                    <span class="lang-ar">المشاريع</span>
-                </a>
-                <a href="#contact" class="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.1rem] hover:opacity-70 transition-all">
-                    <span class="lang-en">Contact</span>
-                    <span class="lang-ar">اتصل بي</span>
-                </a>
+<header class="hdr" id="top">
+  <div class="hdr__in">
+    <a class="logo" href="#top" aria-label="Dalmktg">DALMKTG</a>
+    <nav id="nav" class="nav" aria-label="Main">
+      <a href="#about"><span class="en" lang="en">About</span><span class="ar" lang="ar">من أنا</span></a>
+      <a href="#services"><span class="en" lang="en">Services</span><span class="ar" lang="ar">الخدمات</span></a>
+      <a href="#projects"><span class="en" lang="en">Projects</span><span class="ar" lang="ar">المشاريع</span></a>
+      <a href="#contact"><span class="en" lang="en">Contact</span><span class="ar" lang="ar">تواصل معي</span></a>
+    </nav>
+    <div class="tools">
+      <button id="lang" class="pill" type="button" lang="ar">العربية</button>
+      <button id="menu" class="menu" type="button" aria-expanded="false" aria-controls="nav"><span class="sr-only"><span class="en" lang="en">Menu</span><span class="ar" lang="ar">القائمة</span></span><i></i></button>
+    </div>
+  </div>
+</header>
 
-                <!-- زر تغيير اللغة الأنيق والمضمون -->
-                <button id="lang-toggle" class="px-3 py-1.5 bg-[#141414] text-[#D7E2EA] border border-[#D7E2EA]/20 rounded-full font-bold text-xs hover:bg-[#D7E2EA] hover:text-[#0C0C0C] transition-all cursor-pointer">
-                    العربية
-                </button>
-            </div>
-        </nav>
+<main id="main">
+  <section class="hero">
+    <div class="hearts" id="hearts" aria-hidden="true"></div>
+    <div class="stage">
+      <div class="photo" id="photo">
+        <img src="https://i.ibb.co/tMq47LQN/magnific-just-the-head-no-shoulder-9-ROz-TPp-NYZ.png" alt="Dalal, videographer and brand designer in Kuwait" fetchpriority="high" decoding="async">
+      </div>
+      <h1 class="title">
+        <span class="name display grad"><span class="en" lang="en">Dalal</span><span class="ar" lang="ar">دلال</span></span>
+        <span class="role"><span class="en" lang="en">Videographer, video editor and brand designer in Kuwait</span><span class="ar" lang="ar">مصورة فيديو ومونتيرة ومصممة هوية بصرية في الكويت</span></span>
+      </h1>
+    </div>
+    <div class="foot">
+      <p class="lede"><span class="en" lang="en">A creator driven by crafting striking and unforgettable projects.</span><span class="ar" lang="ar">مبدعة مدفوعة بشغف صناعة مشاريع مذهلة ولا تُنسى.</span></p>
+      <div class="actions">
+        <a class="btn btn--main" href="https://wa.me/96551318282" data-wa="Hi Dalal, I'd like to talk about a project.|مرحباً دلال، أود التحدث معك عن مشروع." target="_blank" rel="noopener"><span class="en" lang="en">Message me on WhatsApp</span><span class="ar" lang="ar">راسلني على واتساب</span></a>
+        <a class="btn btn--ghost" href="#projects"><span class="en" lang="en">See projects</span><span class="ar" lang="ar">شاهد المشاريع</span></a>
+      </div>
+    </div>
+  </section>
 
-        <!-- Floating Portrait Image Container -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-            <div id="magnetic-photo" class="pointer-events-auto transition-transform duration-300 ease-out">
-                <div class="relative w-[240px] sm:w-[300px] md:w-[380px] lg:w-[440px]">
-                    <img 
-                        src="https://i.ibb.co/tMq47LQN/magnific-just-the-head-no-shoulder-9-ROz-TPp-NYZ.png" 
-                        alt="Dalal Portrait" 
-                        class="w-full h-auto object-cover rounded-3xl"
-                    />
-                </div>
-            </div>
-        </div>
+  <div class="ticker" aria-label="Services">
+    <div class="ticker__track">
+      <ul>
+        <li><span class="en" lang="en">Videography</span><span class="ar" lang="ar">تصوير الفيديو</span></li>
+        <li><span class="en" lang="en">Editing</span><span class="ar" lang="ar">المونتاج</span></li>
+        <li><span class="en" lang="en">Motion design</span><span class="ar" lang="ar">الموشن جرافيك</span></li>
+        <li><span class="en" lang="en">Branding</span><span class="ar" lang="ar">الهوية البصرية</span></li>
+        <li><span class="en" lang="en">Web design</span><span class="ar" lang="ar">تصميم المواقع</span></li>
+      </ul>
+      <ul aria-hidden="true">
+        <li><span class="en">Videography</span><span class="ar">تصوير الفيديو</span></li>
+        <li><span class="en">Editing</span><span class="ar">المونتاج</span></li>
+        <li><span class="en">Motion design</span><span class="ar">الموشن جرافيك</span></li>
+        <li><span class="en">Branding</span><span class="ar">الهوية البصرية</span></li>
+        <li><span class="en">Web design</span><span class="ar">تصميم المواقع</span></li>
+      </ul>
+    </div>
+  </div>
 
-        <!-- Big Background Text -->
-<div class="flex-1 flex items-center justify-center overflow-hidden z-20 pointer-events-none mt-6 relative">
-    
-    <!-- حاوية القلوب المتطايرة (تظهر خلف النص مباشرة) -->
-    <div id="hearts-container" class="absolute inset-0 w-full h-full pointer-events-none z-0"></div>
+  <section id="about" class="about" aria-labelledby="t-about">
+    <h2 id="t-about" class="h2 display grad"><span class="en" lang="en">About me</span><span class="ar" lang="ar">من أنا</span></h2>
+    <p class="statement reveal"><span class="en" lang="en">With more than five years of experience in design, I focus on branding, web design and user experience. I enjoy working with businesses that want to stand out and show their best side. Let's build something incredible together!</span><span class="ar" lang="ar">مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!</span></p>
+    <p class="muted"><span class="en" lang="en">Based in Kuwait. I work in English and Arabic.</span><span class="ar" lang="ar">مقيمة في الكويت. أعمل باللغتين العربية والإنجليزية.</span></p>
+    <a class="btn btn--main" href="#contact"><span class="en" lang="en">Start a project</span><span class="ar" lang="ar">ابدأ مشروعاً</span></a>
+  </section>
 
-    <!-- النص (أمام القلوب بفضل z-10) -->
-    <h1 class="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full select-none text-center text-[13vw] sm:text-[14vw] md:text-[15vw] lg:text-[16.5vw] relative z-10">
-        <span class="lang-en">Hi, i'm Dalal</span>
-        <span class="lang-ar">مرحباً، أنا دلال</span>
-    </h1>
-</div>
+  <section id="services" class="light" aria-labelledby="t-services">
+    <div class="wrap">
+      <h2 id="t-services" class="h2 display"><span class="en" lang="en">Services</span><span class="ar" lang="ar">الخدمات</span></h2>
+      <p class="intro"><span class="en" lang="en">Video, motion and design work for businesses that want to stand out.</span><span class="ar" lang="ar">فيديو وموشن وتصميم للشركات التي تريد أن تتميز.</span></p>
+      <ul class="svc">
+        <li><article>
+          <h3><span class="en" lang="en">Videography</span><span class="ar" lang="ar">تصوير الفيديو</span></h3>
+          <div><p><span class="en" lang="en">Shooting for shops, products and brands: reels, ads and campaign footage framed for the screens your customers use.</span><span class="ar" lang="ar">تصوير للمتاجر والمنتجات والعلامات التجارية: ريلز وإعلانات ولقطات حملات مصممة للشاشات التي يستخدمها عملاؤك.</span></p>
+          <a href="https://wa.me/96551318282" data-wa="Hi Dalal, I'm interested in videography.|مرحباً دلال، أنا مهتم بخدمة تصوير الفيديو." target="_blank" rel="noopener"><span class="en" lang="en">Ask about videography</span><span class="ar" lang="ar">اسأل عن تصوير الفيديو</span></a></div>
+        </article></li>
+        <li><article>
+          <h3><span class="en" lang="en">Editing</span><span class="ar" lang="ar">المونتاج</span></h3>
+          <div><p><span class="en" lang="en">Cuts, colour, sound and pacing that turn raw footage into videos people watch to the end.</span><span class="ar" lang="ar">قص وتلوين وصوت وإيقاع يحوّل اللقطات الخام إلى فيديو يتابعه الناس حتى النهاية.</span></p>
+          <a href="https://wa.me/96551318282" data-wa="Hi Dalal, I'm interested in video editing.|مرحباً دلال، أنا مهتم بخدمة المونتاج." target="_blank" rel="noopener"><span class="en" lang="en">Ask about editing</span><span class="ar" lang="ar">اسأل عن المونتاج</span></a></div>
+        </article></li>
+        <li><article>
+          <h3><span class="en" lang="en">Motion design</span><span class="ar" lang="ar">الموشن جرافيك</span></h3>
+          <div><p><span class="en" lang="en">Animated logos, titles and graphics that give your brand movement and a consistent look in every video.</span><span class="ar" lang="ar">شعارات وعناوين ورسومات متحركة تمنح علامتك حركة وهوية موحدة في كل فيديو.</span></p>
+          <a href="https://wa.me/96551318282" data-wa="Hi Dalal, I'm interested in motion design.|مرحباً دلال، أنا مهتم بخدمة الموشن جرافيك." target="_blank" rel="noopener"><span class="en" lang="en">Ask about motion design</span><span class="ar" lang="ar">اسأل عن الموشن جرافيك</span></a></div>
+        </article></li>
+        <li><article>
+          <h3><span class="en" lang="en">Branding</span><span class="ar" lang="ar">الهوية البصرية</span></h3>
+          <div><p><span class="en" lang="en">Logos and full visual identities: colours, type and rules so your business looks the same everywhere.</span><span class="ar" lang="ar">شعارات وهويات بصرية كاملة: ألوان وخطوط وقواعد استخدام لتظهر علامتك بشكل موحد في كل مكان.</span></p>
+          <a href="https://wa.me/96551318282" data-wa="Hi Dalal, I'm interested in branding.|مرحباً دلال، أنا مهتم بخدمة الهوية البصرية." target="_blank" rel="noopener"><span class="en" lang="en">Ask about branding</span><span class="ar" lang="ar">اسأل عن الهوية البصرية</span></a></div>
+        </article></li>
+        <li><article>
+          <h3><span class="en" lang="en">Web design</span><span class="ar" lang="ar">تصميم المواقع</span></h3>
+          <div><p><span class="en" lang="en">Clean, fast websites designed around how people read and buy, and built so search engines can find them.</span><span class="ar" lang="ar">مواقع نظيفة وسريعة تُصمَّم حول طريقة قراءة الناس وشرائهم، ومبنية ليسهل على محركات البحث العثور عليها.</span></p>
+          <a href="https://wa.me/96551318282" data-wa="Hi Dalal, I'm interested in web design.|مرحباً دلال، أنا مهتم بخدمة تصميم المواقع." target="_blank" rel="noopener"><span class="en" lang="en">Ask about web design</span><span class="ar" lang="ar">اسأل عن تصميم المواقع</span></a></div>
+        </article></li>
+      </ul>
+    </div>
+  </section>
 
-        <!-- Footer Info Inside Hero -->
-        <div class="w-full px-6 md:px-10 pb-8 flex justify-between items-end z-20">
-            <p class="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px] text-xs sm:text-sm md:text-base">
-                <span class="lang-en">a creator driven by crafting striking and unforgettable projects</span>
-                <span class="lang-ar">مبدعة مدفوعة بشغف صناعة مشاريع مذهلة ولا تُنسى</span>
-            </p>
-            <button onclick="scrollToContact()" class="btn-gradient rounded-full uppercase tracking-widest font-medium text-white px-8 py-3 transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm cursor-pointer">
-                <span class="lang-en">Contact Me</span>
-                <span class="lang-ar">تواصل معي</span>
-            </button>
-        </div>
-    </section>
+  <section id="projects" class="projects" aria-labelledby="t-projects">
+    <div class="wrap">
+      <h2 id="t-projects" class="h2 display grad"><span class="en" lang="en">Projects</span><span class="ar" lang="ar">المشاريع</span></h2>
+      <p class="intro"><span class="en" lang="en">Recent client and personal work.</span><span class="ar" lang="ar">أعمال حديثة لعملاء ومشاريع شخصية.</span></p>
+      <div class="cards">
+        <article class="card" style="--i:0">
+          <header><div><p class="cat"><span class="en" lang="en">Client project</span><span class="ar" lang="ar">مشروع عميل</span></p><h3><span class="en" lang="en">Fashion Photography</span><span class="ar" lang="ar">تصوير فاشون</span></h3></div>
+          <a class="btn btn--ghost" href="https://wa.me/96551318282" data-wa="Hi Dalal, I'd like a project like Fashion Photography.|مرحباً دلال، أريد مشروعاً مثل تصوير فاشون." target="_blank" rel="noopener"><span class="en" lang="en">Start a similar project</span><span class="ar" lang="ar">ابدأ مشروعاً مماثلاً</span></a></header>
+          <div class="shots"><div class="shots__col"><img src="https://i.ibb.co/GQCQTTkP/Whats-App-Image-2026-07-16-at-02-04-17.jpg" alt="Fashion photography project by Dalal, image 1" loading="lazy" decoding="async"><img src="https://i.ibb.co/G4DBj20M/Whats-App-Image-2026-07-16-at-02-03-36.jpg" alt="Fashion photography project by Dalal, image 2" loading="lazy" decoding="async"></div><img src="https://i.ibb.co/wNCVWJQ4/Whats-App-Image-2026-07-16-at-02-03-49.jpg" alt="Fashion photography project by Dalal, image 3" loading="lazy" decoding="async"></div>
+        </article>
+        <article class="card" style="--i:1">
+          <header><div><p class="cat"><span class="en" lang="en">Personal project</span><span class="ar" lang="ar">مشروع شخصي</span></p><h3><span class="en" lang="en">Aura Brand Identity</span><span class="ar" lang="ar">هوية أورا التجارية</span></h3></div>
+          <a class="btn btn--ghost" href="https://wa.me/96551318282" data-wa="Hi Dalal, I'd like a brand identity like Aura.|مرحباً دلال، أريد هوية بصرية مثل هوية أورا." target="_blank" rel="noopener"><span class="en" lang="en">Start a similar project</span><span class="ar" lang="ar">ابدأ مشروعاً مماثلاً</span></a></header>
+          <div class="shots"><div class="shots__col"><img src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&amp;w=1280&amp;q=85" alt="Aura brand identity by Dalal, image 1" loading="lazy" decoding="async"><img src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&amp;w=1280&amp;q=85" alt="Aura brand identity by Dalal, image 2" loading="lazy" decoding="async"></div><img src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&amp;w=1280&amp;q=85" alt="Aura brand identity by Dalal, image 3" loading="lazy" decoding="async"></div>
+        </article>
+        <article class="card" style="--i:2">
+          <header><div><p class="cat"><span class="en" lang="en">Client project</span><span class="ar" lang="ar">مشروع عميل</span></p><h3><span class="en" lang="en">Solaris Digital</span><span class="ar" lang="ar">سولاريس ديجيتال</span></h3></div>
+          <a class="btn btn--ghost" href="https://wa.me/96551318282" data-wa="Hi Dalal, I'd like a project like Solaris Digital.|مرحباً دلال، أريد مشروعاً مثل سولاريس ديجيتال." target="_blank" rel="noopener"><span class="en" lang="en">Start a similar project</span><span class="ar" lang="ar">ابدأ مشروعاً مماثلاً</span></a></header>
+          <div class="shots"><div class="shots__col"><img src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&amp;w=1280&amp;q=85" alt="Solaris Digital project by Dalal, image 1" loading="lazy" decoding="async"><img src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&amp;w=1280&amp;q=85" alt="Solaris Digital project by Dalal, image 2" loading="lazy" decoding="async"></div><img src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&amp;w=1280&amp;q=85" alt="Solaris Digital project by Dalal, image 3" loading="lazy" decoding="async"></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <!-- MARQUEE SECTION -->
-    <section id="marquee" class="bg-[#0C0C0C] pt-20 pb-10 overflow-hidden relative w-full">
-        <div id="marquee-row1" class="flex gap-3 mb-3 w-[200%] select-none pointer-events-none"></div>
-        <div id="marquee-row2" class="flex gap-3 w-[200%] select-none pointer-events-none"></div>
-    </section>
+  <section id="contact" class="contact" aria-labelledby="t-contact">
+    <div class="wrap">
+      <h2 id="t-contact" class="h2 display grad"><span class="en" lang="en">Have a project in mind?</span><span class="ar" lang="ar">لديك مشروع ترغب في تنفيذه؟</span></h2>
+      <p class="intro"><span class="en" lang="en">Tell me what you're making and when you need it. WhatsApp is the fastest way to reach me.</span><span class="ar" lang="ar">أخبرني ما الذي تريد تنفيذه ومتى تحتاجه. واتساب هو أسرع طريقة للتواصل معي.</span></p>
+      <div class="actions">
+        <a class="btn btn--main" href="https://wa.me/96551318282" data-wa="Hi Dalal, I'd like to talk about a project.|مرحباً دلال، أود التحدث معك عن مشروع." target="_blank" rel="noopener"><span class="en" lang="en">Message on WhatsApp</span><span class="ar" lang="ar">راسلني على واتساب</span></a>
+        <a class="btn btn--ghost" href="mailto:dalmktg@gmail.com">dalmktg@gmail.com</a>
+        <a class="btn btn--ghost" href="tel:+96551318282" dir="ltr">+965 5131 8282</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="relative min-h-screen w-full bg-[#0C0C0C] flex flex-col justify-center items-center px-5 py-20 overflow-hidden">
-        <div class="flex flex-col items-center justify-center text-center max-w-4xl z-20">
-            <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-[12vw] md:text-[8vw] mb-10">
-                <span class="lang-en">About me</span>
-                <span class="lang-ar">من أنا</span>
-            </h2>
-            
-            <p id="about-text" class="text-[#D7E2EA]/70 font-medium text-center leading-relaxed max-w-[700px] tracking-wide text-lg md:text-2xl mb-12">
-                <span class="lang-en">With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!</span>
-                <span class="lang-ar">مع خبرة تزيد عن خمس سنوات في مجال التصميم، أركز على بناء الهوية البصرية، وتصميم الويب وتجربة المستخدم. أستمتع بمساعدة الشركات التي تطمح للبروز والظهور بأفضل شكل ممكن. لنصنع معاً شيئاً استثنائياً!</span>
-            </p>
+<footer class="ftr"><p>© <span id="year">2026</span> Dalmktg. <span class="en" lang="en">All rights reserved.</span><span class="ar" lang="ar">جميع الحقوق محفوظة.</span></p></footer>
 
-            <button onclick="scrollToContact()" class="btn-gradient rounded-full uppercase tracking-widest font-medium text-white px-8 py-3 transition-all hover:scale-105 active:scale-95 text-sm cursor-pointer">
-                <span class="lang-en">Contact Me</span>
-                <span class="lang-ar">تواصل معي</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section id="services" class="bg-[#FFFFFF] rounded-t-[40px] md:rounded-t-[60px] px-5 md:px-10 py-20 md:py-32 relative z-20 text-[#0C0C0C]">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="font-black uppercase text-center leading-none tracking-tight mb-20 text-[12vw] md:text-[8vw]">
-                <span class="lang-en">Services</span>
-                <span class="lang-ar">الخدمات</span>
-            </h2>
-
-            <!-- قائمة الخدمات: يتم رندرتها ديناميكياً من App.js -->
-            <div class="flex flex-col border-t border-[#0C0C0C]/15" id="services-list"></div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects" class="bg-[#0C0C0C] rounded-t-[40px] md:rounded-t-[60px] -mt-10 pt-20 pb-32 relative z-25 px-5 md:px-10">
-        <div class="max-w-6xl mx-auto flex flex-col">
-            <h2 class="hero-heading font-black uppercase leading-none tracking-tight text-center mb-24 text-[12vw] md:text-[8vw]">
-                <span class="lang-en">Projects</span>
-                <span class="lang-ar">المشاريع المميزة</span>
-            </h2>
-            
-            <!-- كروت المشاريع: يتم رندرتها ديناميكياً من App.js -->
-            <div id="projects-container" class="relative flex flex-col items-center w-full gap-12"></div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="bg-[#0C0C0C] pt-24 pb-12 px-6 md:px-10 border-t border-[#D7E2EA]/10 relative z-30">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
-            <div class="flex flex-col gap-4">
-                <span class="text-[#D7E2EA]/50 uppercase tracking-widest text-xs sm:text-sm font-medium">
-                    <span class="lang-en">Let's Build</span>
-                    <span class="lang-ar">لنصنع عملاً معاً</span>
-                </span>
-                <h2 class="text-[#D7E2EA] font-extrabold text-3xl sm:text-5xl uppercase tracking-tighter leading-none">
-                    <span class="lang-en">Have a project <br /> in mind?</span>
-                    <span class="lang-ar">لديك مشروع <br /> ترغب في تنفيذه؟</span>
-                </h2>
-            </div>
-
-            <div class="flex flex-col gap-2 text-[#D7E2EA] font-light text-base sm:text-lg">
-                <a href="mailto:dalmktg@gmail.com" class="hover:text-pink-500 transition-colors duration-200">
-                    dalmktg@gmail.com
-                </a>
-                <span class="text-white/40">©️ <span id="year"></span> Dalmktg. <span class="lang-en">All rights reserved.</span><span class="lang-ar">جميع الحقوق محفوظة.</span></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- أيقونة واتساب عائمة -->
-    <a href="https://wa.me/96551318282" target="_blank" rel="noopener noreferrer" class="whatsapp-float" id="whatsapp-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-        </svg>
-    </a>
-
-    <!-- مكتبات الحركة والأيقونات المطلوبة من App.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <!-- ملف الجافا سكريبت الوحيد المسؤول عن كل التفاعل -->
-    <script src="App.js"></script>
+<a class="wa" href="https://wa.me/96551318282" data-wa="Hi Dalal, I'd like to talk about a project.|مرحباً دلال، أود التحدث معك عن مشروع." target="_blank" rel="noopener">
+  <span class="sr-only"><span class="en" lang="en">Chat on WhatsApp</span><span class="ar" lang="ar">محادثة على واتساب</span></span>
+  <svg width="28" height="28" viewBox="0 0 16 16" fill="#fff" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+</a>
+<script src="App.js" defer></script>
 </body>
 </html>
